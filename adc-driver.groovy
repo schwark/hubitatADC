@@ -1,4 +1,5 @@
 /**
+ *   *********************** NOT USED ANYMORE - ONLY FOR ARCHIVAL ***************************
  *
  *  File: disarm-driver.groovy
  *  Platform: Hubitat

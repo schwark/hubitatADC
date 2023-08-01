@@ -168,6 +168,9 @@ def mainPage() {
             input "password", "password", title: "Alarm.com Password", required: false
         }
         section {
+            input "switchprefix", "text", title: "Prefix to use for Switch names", defaultValue: "ADC ", required: false
+        }
+        section {
             input "twoFactorAuthenticationId", "twoFactorAuthenticationId", title: "twoFactorAuthenticationId from browser", required: false
         }
         section {
@@ -633,12 +636,12 @@ private createChildDevices() {
 private createChildDevice(deviceType) {
     def labelMap = getLabelMap()
     def label = labelMap[deviceType]
+    def prefix = switchPrefix ? switchPrefix : ""
 
     try {
         // create the child device
-        addChildDevice("jmpierce", "Alarm.com Panel Switch", "${state.panelID}-${deviceType}", null, [label : "ADC ${label}", isComponent: false, name: "ADC ${label}"])
+        addChildDevice("hubitat", "Generic Component Switch", "${state.panelID}-${deviceType}", null, [label : "${prefix}${label}", isComponent: false, name: "${prefix}${label}"])
         createdDevice = getChildDevice("${state.panelID}-${deviceType}")
-        createdDevice.setActionType(deviceType)
 
         debug("Child device ${state.panelID}-${deviceType} created", "createChildDevice()")
     } catch (e) {
@@ -780,4 +783,23 @@ private debug(logMessage, fromMethod="") {
 ******************************************************************************/
 private logError(fromMethod, e) {
     log.error("ADC ERROR (${fromMethod}): ${e}")
+}
+
+void componentRefresh(cd) {
+    pollSystemStatus()
+}
+
+def componentOn(cd) {
+    debug("received on request from DN = ${cd.name}, DNI = ${cd.deviceNetworkId}")
+	def idparts = cd.deviceNetworkId.split("-")
+    def actionType = idparts[-1]
+	switchStateUpdated(actionType, "on")
+}
+
+
+def componentOff(cd) {
+    debug("received off request from DN = ${cd.name}, DNI = ${cd.deviceNetworkId}")
+	def idparts = cd.deviceNetworkId.split("-")
+    def actionType = idparts[-1]
+	switchStateUpdated(actionType, "off")
 }

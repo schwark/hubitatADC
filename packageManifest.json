@@ -14,14 +14,5 @@
       "oauth": false,
       "primary": false
     }
-  ],
-  "drivers": [
-    {
-      "id": "0604ee5d-50e8-4441-ad78-6c8c9fdb0cc1",
-      "name": "Alarm.com Panel Switch",
-      "namespace": "schwark",
-      "location": "https://raw.githubusercontent.com/schwark/hubitatADC/master/adc-driver.groovy",
-      "required": true
-    }
   ]
 }
