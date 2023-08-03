@@ -546,7 +546,7 @@ private getSystemStatus() {
                 status_key = "armaway"
             }
 
-            debug("Alarm.com returned a panel status of: ${current_status} - ${status_key}", "getSystemStatus()")
+            log.info("Alarm.com returned a panel status of: ${current_status} - ${status_key}")
             updateHubStatus(status_key)
         }
     } catch (e) {
@@ -563,7 +563,7 @@ private getSystemStatus() {
 private setSystemStatus(status_key) {
     ensureAuth()
 
-    debug("Attempting to set a panel status of: ${status_key} with panelID ${state.panelID}", "setSystemStatus()")
+    log.info("Setting Alarm.com panel status of: ${status_key} with panelID ${state.panelID}")
 
     def adc_command = null
     def post_data = '{"forceBypass":'+bypass+',"noEntryDelay":'+nodelay+',"silentArming":'+silent+',"statePollOnly":false}'
@@ -643,7 +643,7 @@ private createChildDevice(deviceType) {
         addChildDevice("hubitat", "Generic Component Switch", "${state.panelID}-${deviceType}", null, [label : "${prefix}${label}", isComponent: false, name: "${prefix}${label}"])
         createdDevice = getChildDevice("${state.panelID}-${deviceType}")
 
-        debug("Child device ${state.panelID}-${deviceType} created", "createChildDevice()")
+        log.info("Alarm.com child device ${state.panelID}-${deviceType} created", "createChildDevice()")
     } catch (e) {
         logError("Failed to add child device with error: ${e}", "createChildDevice()")
     }
