@@ -10,7 +10,7 @@
     {
       "id": "a4b74c05-84ec-481e-8e4f-14b7016d2e7f",
       "name": "Alarm.com Manager",
-      "namespace": "jmpierce",
+      "namespace": "schwark",
       "location": "https://raw.githubusercontent.com/schwark/hubitatADC/master/adc-manager-app.groovy",
       "required": true,
       "oauth": false,
