@@ -48,6 +48,7 @@
  */
 
 String version() { "1.1.3" }
+String appName() { "Alarm.com Manager" }
 String appVersion() { version() }
 String appModified() { return "2020-05-31" }
 String appAuthor() { return "Jeff Pierce / Schwark Satyavolu" }
