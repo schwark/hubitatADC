@@ -47,7 +47,8 @@
  *
  */
 
-String appVersion() { return "1.1.2" }
+String version() { "1.1.3" }
+String appVersion() { version() }
 String appModified() { return "2020-05-31" }
 String appAuthor() { return "Jeff Pierce" }
 
@@ -792,15 +793,15 @@ void componentRefresh(cd) {
 
 def componentOn(cd) {
     debug("received on request from DN = ${cd.name}, DNI = ${cd.deviceNetworkId}")
-	def idparts = cd.deviceNetworkId.split("-")
+    def idparts = cd.deviceNetworkId.split("-")
     def actionType = idparts[-1]
-	switchStateUpdated(actionType, "on")
+    switchStateUpdated(actionType, "on")
 }
 
 
 def componentOff(cd) {
     debug("received off request from DN = ${cd.name}, DNI = ${cd.deviceNetworkId}")
-	def idparts = cd.deviceNetworkId.split("-")
+    def idparts = cd.deviceNetworkId.split("-")
     def actionType = idparts[-1]
-	switchStateUpdated(actionType, "off")
+    switchStateUpdated(actionType, "off")
 }
