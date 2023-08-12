@@ -36,22 +36,22 @@ metadata {
     definition (name: "Alarm.com Panel Switch", namespace: "jmpierce", author: "Jeff Pierce") {
         capability "Initialize"
         capability "Refresh"
-		capability "Switch"
+        capability "Switch"
     }
 }
 
 preferences {
-	input(name: "actionType", type: "enum", title: "Switch Performs Action", options: ["disarm", "armstay", "armaway"], required: true)
+    input(name: "actionType", type: "enum", title: "Switch Performs Action", options: ["disarm", "armstay", "armaway"], required: true)
     //input name: "logEnable", type: "bool", title: "Enable debug logging", defaultValue: true
 }
 
 def setActionType(actionType) {
-	try {
-		device.updateSetting("actionType", [value: actionType, type: "enum"])
-		//log.debug("Setting updated to: ${actionType}")
-	} catch(e) {
-		log.error("Failed to update actionType with error: ${e}")
-	}
+    try {
+        device.updateSetting("actionType", [value: actionType, type: "enum"])
+        //log.debug("Setting updated to: ${actionType}")
+    } catch(e) {
+        log.error("Failed to update actionType with error: ${e}")
+    }
 }
 
 def logsOff(){
@@ -61,8 +61,8 @@ def logsOff(){
 
 def refresh() {
     //log.info "refresh() called"
-	//initialize()
-	getSwitchStatus()
+    //initialize()
+    getSwitchStatus()
 }
 
 
@@ -80,36 +80,36 @@ def updated() {
     //Create a 30 minute timer for debug logging
  //   if (logEnable) runIn(1800,logsOff)
     
-//	runEvery1Minute(switchPollStatus)
+//    runEvery1Minute(switchPollStatus)
 //    refresh()
 }
 
 
 def getSwitchStatus() {
-	parent.pollSystemStatus()
+    parent.pollSystemStatus()
 }
 
 
 def getCurrentSwitchState() {
-	return device.currentValue("switch")
+    return device.currentValue("switch")
 }
 
 
 def on() {
-	debug("ADC ${actionType} switched to ON", "on()")
-	parent.switchStateUpdated(actionType, "on")
+    debug("ADC ${actionType} switched to ON", "on()")
+    parent.switchStateUpdated(actionType, "on")
 }
 
 
 def off() {
-	debug("ADC ${actionType} switched to OFF", "off()")
-	parent.switchStateUpdated(actionType, "off")
+    debug("ADC ${actionType} switched to OFF", "off()")
+    parent.switchStateUpdated(actionType, "off")
 }
 
-	
+    
 def initialize() {
     state.version = version()
-	
+    
     refresh()
 }
 
@@ -121,13 +121,13 @@ def initialize() {
 # 
 ******************************************************************************/
 private debug(logMessage, fromMethod="") {
-	if(parent.getDebugMode()) {
-		def fMethod = ""
+    if(parent.getDebugMode()) {
+        def fMethod = ""
 
-		if(fromMethod) {
-			fMethod = ".${fromMethod}"
-		}
+        if(fromMethod) {
+            fMethod = ".${fromMethod}"
+        }
 
-		log.debug("ADC-Device${fMethod}: ${logMessage}")
-	}
+        log.debug("ADC-Device${fMethod}: ${logMessage}")
+    }
 }
