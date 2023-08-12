@@ -50,12 +50,12 @@
 String version() { "1.1.3" }
 String appVersion() { version() }
 String appModified() { return "2020-05-31" }
-String appAuthor() { return "Jeff Pierce" }
+String appAuthor() { return "Jeff Pierce / Schwark Satyavolu" }
 
  definition(
     name: "Alarm.com Manager",
-    namespace: "jmpierce",
-    author: "Jeff Pierce",
+    namespace: "schwark",
+    author: "Jeff Pierce / Schwark Satyavolu",
     description: "Allows you to connect your Alarm.com alarm system with Hubitat for switch-level control of system states",
     category: "Security",
     iconUrl: "https://images-na.ssl-images-amazon.com/images/I/71yQ11GAAiL.png",
