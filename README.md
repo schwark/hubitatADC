@@ -1,6 +1,9 @@
 # hubitatADC
 Hubitat Alarm.com App and Driver
 
+# How to install
+The easiest way to install and keep up to date is to use [Hubitat Package Manager](https://hubitatpackagemanager.hubitatcommunity.com/installing.html). Search for Alarm.com to install
+
 # Hubitat ADC App v1.1.2
 Hubitat Elevation app and device handler for alarm.com
 
